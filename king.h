@@ -11,4 +11,8 @@ class King : class Piece {
    std::vector getPiece(Piece piece) override;
 };
 
+
+
+
+
 #endif
