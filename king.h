@@ -13,6 +13,4 @@ class King : class Piece {
 
 
 
-
-
 #endif

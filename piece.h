@@ -4,8 +4,7 @@
 #include <vector>
 
 class Piece {
-  Piece piece;
-  std::vector<int> coords;
+  int x, int y;
  public:
    Piece(int x, int y) virtual;
    ~Piece() virtual;
