@@ -4,11 +4,19 @@
 #include "piece.h"
 
 class Pawn : class Piece {
+  int front;
+  bool firstTime;
  public:
-   Pawn(int x, int y) override;
-   ~Pawn() override;
-   void setPiece(int x, int y) override;
-   std::vector getPiece(Piece piece) override;
+   Pawn(char type, int row, int col, Player* p, Board* theBoard, int front);
+   bool validMove(int row, int col);
+   bool tryNextMove();
+   void check(Player* opp);
+   void uncheck(Player *opp, int row, int col);
+   void notifyDisplay(Textdisplay& t);
+
+   void upgrade();
+   int getFront();
+   
 };
 
 #endif
