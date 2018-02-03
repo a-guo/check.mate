@@ -2,6 +2,7 @@
 #define PIECE_H
 
 #include <vector>
+#include "textdisplay.h"
 
 class Piece {
   int x, int y;
