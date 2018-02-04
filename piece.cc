@@ -29,16 +29,57 @@ type(type), row(row), col(col), thePlayer(p), theBoard(theBoard) {
 }
 
 bool Piece::move(int fRow, int fCol) {
+  // check if move is valid
+  if (validMove(fRow, fCol) && (! thePlayer->isPlaced(fRow, fCol))) {
+    theBoard->setPlaced(row, col, false); // unplace from board
+    theBoard->setPlaced(fRow, fCol, true); // place on board at new coordinates
+    // retain old coordinates in case of reversing move
+    int iRow = row;
+    int iCol = col;
+    // update coordinates
+    row = fRow;
+    col = fCol;
+    thePlayer->getOpp(0)->reCalc();
+    // now, must notify neighbours that I moved
+    // set coordinates, add new neighbours, notify neighbours that I moved
+    // addNeightbours();
+    //theBoard->setPlaced(fRow, fCol, true);
+    //notifyNeighboursPlaced();
 
+    // check with king
+    if(notifyKing()) {
+      // if it is a bottomline pawn, upgrade
+      if (thePlayer->bottomLinePawn()) {
+        upgrade();
+      }
+      return true;
+    } else {
+      // if king will be in check after this move, reverse!
+      theBoard->setPlaced(iRow, iCol, true);
+      theBoard->setPlaced(fRow, fCol, false);
+      //notifyNeighboursMoved();
+      row = iRow;
+      col = iCol;
+      //addNeightbours();
+      thePlayer->getOpp(0)->reCalc();
+      //notifyNeighboursPlaced();
+      return false;
+    }
+
+  } else {
+    // not a valid move, return false
+    return false;
+  }
 }
 
+// notifyKing() returns true when the King is not in check, and false otherwise
 bool Piece::notifyKing() {
   Piece* king = thePlayer->getKing();
   return ! thePlayer->isChecked(king->getRow()), king->getCol());
 }
 
 void Piece::addNeightbours() {
-  
+
 }
 
 void Piece::addNeightbour(Piece* p) {
