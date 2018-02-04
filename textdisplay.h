@@ -2,15 +2,19 @@
 #define TEXTDISPLAY_H
 
 #include <iostream>
-
-class Board;
+#include <sstream>
+#include "window.h"
 
 class TextDisplay {
-  std::shared_ptr<Board> theBoard;
-  std::vector<std::vector<char>> theDisplay;
+  char** theDisplay;
+  const int boardSize;
+  Xwindow *w;
  public:
-    ~TextDisplay();
-    TextDisplay(std::shared_ptr<Board> theBoard);
+   TextDisplay(int n);
+   void resetDisplay();
+   void notify(int iRow, int iCol, int fRow, int fCol, char type);
+
+   ~TextDisplay();
 
  friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
 };
