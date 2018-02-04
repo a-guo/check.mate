@@ -9,18 +9,6 @@ using namespace std;
 Piece* Piece::pawnJustMoved = NULL;
 
 
-const int GRID_SIZE = 8;
-const int MAX_NEIGHBOURS = 8;
-
-char type;
-int row, int col;
-int index;
-static Piece* pawnJustMoved;
-Player* thePlayer;
-Piece** neighbour;
-Board* theBoard;
-XWindow *w;
-
 Piece::Piece(char type, int row, int col, Player *p, Board *theBoard) :
 type(type), row(row), col(col), thePlayer(p), theBoard(theBoard) {
   type = 0;
@@ -145,9 +133,9 @@ void Piece::addNeighbours() {
   }
   // northwest
   for(int i = 1; i < GRID_SIZE - 1; i++) {
-    if (row + 1 >= GRID_SIZE || col - i < 0) break;
+    if (row + i >= GRID_SIZE || col - i < 0) break;
     // check for placement
-    if (theBoard->isPlaced(row + if; col - i)) {
+    if (theBoard->isPlaced(row + i; col - i)) {
       Piece* p = theBoard->getPiece(row + i, col - i);
       if (p != NULL) {
         neighbour[index] = p;
@@ -158,8 +146,33 @@ void Piece::addNeighbours() {
     }
   }
   // southeast
-  
+  for(int i = 1; i < GRID_SIZE - 1; i++) {
+    if (row - i < 0 || col + i >= GRID_SIZE) break;
+    // check for placement
+    if(theBoard->isPlaced(row - i; col + i)) {
+      Piece* p = theBoard->getPiece(row - i, col + i);
+      if (p != NULL) {
+        neighbour[index] = p;
+        p->addNeighbour(this);
+        index++;
+        break;
+      }
+    }
+  }
   // southwest
+  for(int i = 1; i < GRID_SIZE - 1; i++) {
+    if (row - i < 0 || col - i < 0) break;
+    // check for placement
+    if (theBoard->isPlaced(row - i, col - i)) {
+      Piece* p = theBoard->getPiece(row - i, col - i);
+      if (p != NULL) {
+        neighbour[index] = p;
+        p->addNeighbour(this);
+        index++;
+        break;
+      }
+    }
+  }
 }
 
 
