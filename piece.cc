@@ -42,7 +42,7 @@ bool Piece::move(int fRow, int fCol) {
     thePlayer->getOpp(0)->reCalc();
     // now, must notify neighbours that I moved
     // set coordinates, add new neighbours, notify neighbours that I moved
-    // addNeightbours();
+    // addNeighbours();
     //theBoard->setPlaced(fRow, fCol, true);
     //notifyNeighboursPlaced();
 
@@ -78,11 +78,29 @@ bool Piece::notifyKing() {
   return ! thePlayer->isChecked(king->getRow()), king->getCol());
 }
 
-void Piece::addNeightbours() {
+void Piece::addNeighbours() {
+  index = 0;
+  // east
+  for(int j = col + 1; j < GRID_SIZE; j++) {
+    if (theBoard->isPlaced(row, j)) {
+      Piece *p = theBoard->getPiece(row);
+      if (p != NULL) {
+        neightbour[index] = p;
+        p->addNeighbour(this);
+        index++;
+        break;
+      }
+    }
+  }
+  // west
+
+  // north
+
+  // south
 
 }
 
-void Piece::addNeightbour(Piece* p) {
+void Piece::addNeighbour(Piece* p) {
   bool in = false;
   for (int i = 0; i < index; i++) {
     if (neightbour[i] == p) in = true;
