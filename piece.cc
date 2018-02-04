@@ -83,7 +83,7 @@ void Piece::addNeighbours() {
   // east
   for(int j = col + 1; j < GRID_SIZE; j++) {
     if (theBoard->isPlaced(row, j)) {
-      Piece *p = theBoard->getPiece(row);
+      Piece *p = theBoard->getPiece(row, j);
       if (p != NULL) {
         neightbour[index] = p;
         p->addNeighbour(this);
@@ -93,12 +93,75 @@ void Piece::addNeighbours() {
     }
   }
   // west
-
+  for(int j = col - 1; j >= 0; j--) {
+    if (theBoard->isPlaced(row, j)) {
+      Piece* p = theBoard->getPiece(row, j);
+      if (p != NULL) {
+        neighbour[index] = p;
+        p->addNeighbour(this);
+        index++;
+        break;
+      }
+    }
+  }
   // north
-
+  for(int j = row + 1; j < GRID_SIZE; j++) {
+    if (theBoard->isPlaced(j, col)) {
+      Piece* p = theBoard->getPiece(j, col);
+      if (p != NULL) {
+        neighbour[index] = p;
+        p->addNeighbour(this);
+        index++;
+        break;
+      }
+    }
+  }
   // south
-
+  for(int j = row - 1; j >= 0; j--) {
+    if (theBoard->isPlaced(j, col)) {
+      Piece* p = theBoard->getPiece(j, col);
+      if (p != NULL) {
+        neighbour[index] = p;
+        p->addNeighbour(this);
+        index++;
+        break;
+      }
+    }
+  }
+  // northeast
+  for(int i = 1; i < GRID_SIZE - 1; i++) {
+    // check for over Board
+    if (row + i >= GRID_SIZE || col + i >= GRID_SIZE) break;
+    // check for placement
+    if (theBoard->isPlaced(row + i, col + i)) {
+      Piece* p = theBoard->getPiece(row + i, col + i);
+      if(p != NULL) {
+        neighbour[index] = p;
+        p->addNeighbour(this);
+        index++;
+        break;
+      }
+    }
+  }
+  // northwest
+  for(int i = 1; i < GRID_SIZE - 1; i++) {
+    if (row + 1 >= GRID_SIZE || col - i < 0) break;
+    // check for placement
+    if (theBoard->isPlaced(row + if; col - i)) {
+      Piece* p = theBoard->getPiece(row + i, col - i);
+      if (p != NULL) {
+        neighbour[index] = p;
+        p->addNeighbour(this);
+        index++;
+        break;
+      }
+    }
+  }
+  // southeast
+  
+  // southwest
 }
+
 
 void Piece::addNeighbour(Piece* p) {
   bool in = false;
