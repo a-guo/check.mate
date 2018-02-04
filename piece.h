@@ -32,7 +32,7 @@ protected:
    bool move(int fRow, int fCol);
    bool notifyKing();
    void addNeightbours();
-   void addNeightbours(Piece* neightbour);
+   void addNeightbour(Piece* neightbour);
    void notifyNeighboursMoved();
    void notifyNeighboursPlaced();
    void notify(Player *opp, int row, int col);
