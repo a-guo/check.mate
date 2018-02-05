@@ -1,13 +1,19 @@
 #include "bishop.h"
+#include "board.h"
+#include "textdisplay.h"
+#include "player.h"
+#include <cstdlib>
 
 using namespace std;
 
-Bishop::Bishop(int x, int y) : x(x), y(y) {};
+Bishop::Bishop(char type, int row, int col, Player* p, Board* theBoard)
+              : Piece(type, row, col, p, theBoard) {}
+              
+bool Bishop::validMove(int row, int col);
+bool Bishop::tryNextMove();
+void Bishop::check(Player* opp);
+void Bishop::uncheck(Player* opp, int row, int col);
 
-Bishop::~Bishop() {
-  return;
-}
+void Bishop::notifyDisplay(Textdisplay& t) {}
 
-void Bishop::setPiece(int x, int y);
-
-std::vector Bishop::getPiece(Piece piece);
+void Bishop::upgrade() {}
