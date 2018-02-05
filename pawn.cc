@@ -10,7 +10,7 @@ Pawn::Pawn(char type, int row, int col, Player* p, Board* theBoard, int front)
         : Piece(type, row, col, p, theBoard), front(front), firstTime(true) {}
 
 bool Pawn::validMove(int row, int col) {
-
+  // THIS STILL NEEDS TO BE DONE!!!!!
 }
 
 bool Pawn::tryNextMove() {
