@@ -12,4 +12,5 @@ Level3::Level3(Board* theBoard, int numOpp, int bottomLine, int playerNum)
 
 bool Level3::move() {
 
+  
 }
