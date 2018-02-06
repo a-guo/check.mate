@@ -1,6 +1,15 @@
 #include "board.h"
+#include "textdisplay.h"
+#include "trashbin.h" // is this even called trashbin?
+#include "player.h"
+#include "piece.h"
+#include <stdlib.h>
+#include <iostream>
 
 using namespace std;
+
+const int BOARD_SIZE = 8;
+const int MAX_PIECE = 32;
 
 int maxPlayer;
 int numPlayer;
@@ -10,7 +19,7 @@ Piece*** theBoard;
 bool** placed;
 Textdisplay* theDisplay;
 Player** players;
-Trash* theTrash; 
+Trash* theTrash;
 
 Board::Board(int maxPlayer);
 // default initialize to 2 players
