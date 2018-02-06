@@ -7,5 +7,7 @@
 
 using namespace std;
 
-Level2::Level2(Board* theBoard, int numOpp, int bottomLine, int playerNum);
+Level2::Level2(Board* theBoard, int numOpp, int bottomLine, int playerNum)
+              : Engine(theBoard, numOpp, bottomLine, playerNum) {}
+              
 bool Level2::move();
