@@ -12,7 +12,6 @@ Player::Player(Board* theBoard, int maxOpp, int bottomLine, int playerNum)
               : theBoard(theBoard), maxOpp(maxOpp), bottomLine(bottomLine),
               theKing(NULL), numOpp(0), playerNum(playerNum) {
   // initialize Player's myPiece, Opponents, checked
-
   Checked = new int* [GRID_SIZE];
   Opps = new Player* [maxOpp];
   myPiece = new Piece** [GRID_SIZE];
