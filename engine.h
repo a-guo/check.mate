@@ -9,7 +9,7 @@ protected:
   int numPiece;
   Piece** pList;
 public:
-  Engine(Board* theBoard, int numOpp, int bottomLine, int playerNum);;
+  Engine(Board* theBoard, int numOpp, int bottomLine, int playerNum);
   void addPiece(Piece *p, int row, int col);
   void removePiece(int row, int col);
   virtual bool move() = 0;
