@@ -31,7 +31,7 @@ bool Pawn::validMove(int row, int col) {
   }
   // check for capturing
   // -x-
-  // P--
+  // P--   
   if (theBoard->isPlaced(row, col) &&
       this->row + front == row && (this->col + 1 == col || this->col - 1 == col)) {
         result = true;
