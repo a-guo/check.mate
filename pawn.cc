@@ -10,7 +10,51 @@ Pawn::Pawn(char type, int row, int col, Player* p, Board* theBoard, int front)
         : Piece(type, row, col, p, theBoard), front(front), firstTime(true) {}
 
 bool Pawn::validMove(int row, int col) {
-  // THIS STILL NEEDS TO BE DONE!!!!!
+  bool result = false;
+  if ((this->col == col && this->row == row) || (col > GRID_SIZE) || col < 0) {
+    return false;
+  }
+  if ((this->col == col && this->row == row) || (row > GRID_SIZE) || row < 0) {
+    return false;
+  }
+  // check en passant a valid move
+  if (pawnJustMoved != NULL) {
+    int pRow = pawnJustMoved->getRow();
+    int pCol = pawnJustMoved->getCol();
+    // -x-
+    // Pp-
+    // ---
+    if ((pRow - front == row && pCol == col) &&
+        (this->row + front == row && this->col + front == col)) {
+      result = true;
+    }
+  }
+  // check for capturing
+  // -x-
+  // P--
+  if (theBoard->isPlaced(row, col) &&
+      this->row + front == row && (this->col + 1 == col || this->col - 1 == col)) {
+        result = true;
+  }
+  // if it's just moving forward one block, then it's good
+  if (this->row + front == row && this->col == col) {
+    if (theBoard->isPlaced(row, col)) return false;
+    if (firstTime) {
+      firstTime = false;
+      pawnJustMoved = this;
+    }
+    result = true;
+  }
+  // check for first time movement
+  if (this->row + front * 2 == row && this->col == col && firstTime) {
+    firstTime = false;
+    // tell everyone that pawn just moved
+    pawnJustMoved = this;
+    result = true;
+  }
+  if(thePlayer->isPlaced(row, col)) return false;
+
+  return result;
 }
 
 bool Pawn::tryNextMove() {
