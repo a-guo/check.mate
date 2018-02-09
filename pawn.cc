@@ -11,6 +11,7 @@ Pawn::Pawn(char type, int row, int col, Player* p, Board* theBoard, int front)
 
 bool Pawn::validMove(int row, int col) {
   bool result = false;
+  // if move to same spot or outside of board boundaries
   if ((this->col == col && this->row == row) || (col > GRID_SIZE) || col < 0) {
     return false;
   }
@@ -45,7 +46,7 @@ bool Pawn::validMove(int row, int col) {
     }
     result = true;
   }
-  // check for first time movement
+  // check for first time movement - moving 2 blocks
   if (this->row + front * 2 == row && this->col == col && firstTime) {
     firstTime = false;
     // tell everyone that pawn just moved
