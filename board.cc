@@ -33,7 +33,47 @@ Board::Board(int maxPlayer) : maxPlayer(maxPlayer), numPlayer(0), currentPlayer(
 }
 
 // default initialize to 2 players
-void Board::defaultInit(Player* p1, Player* p2);
+void Board::defaultInit(Player* p1, Player* p2) {
+  theDisplay->resetDisplay();
+  players[0] = p1;
+  players[1] = p2;
+  numPlayer = 2;
+  p1->addOpp(p2);
+  p2->addOpp(p1);
+  theBoard = new Piece** [BOARD_SIZE];
+  for (int i = 0; i < BOARD_SIZE; i++) {
+    theBoard[i] = new Piece* [BOARD_SIZE];
+    for (int j = 0; j < BOARD_SIZE; j++) {
+      theBoard[i][j] = NULL;
+      place[i][j] = false;
+    }
+  }
+  // black initialization
+  setPiece('r', 0, 0);
+  setPiece('n', 0, 1);
+  setPiece('b', 0, 2);
+  setPiece('q', 0, 3);
+  setPiece('k', 0, 4);
+  setPiece('b', 0, 5);
+  setPiece('n', 0, 6);
+  setPiece('r', 0, 7);
+  for (int i = 0; i < BOARD_SIZE; i++) {
+    setPiece('p', 1, i);
+  }
+
+  // white initialization
+  setPiece('R', BOARD_SIZE - 1, 0);
+  setPiece('N', BOARD_SIZE - 1, 1);
+  setPiece('B', BOARD_SIZE - 1, 2);
+  setPiece('Q', BOARD_SIZE - 1, 3);
+  setPiece('K', BOARD_SIZE - 1, 4);
+  setPiece('B', BOARD_SIZE - 1, 5);
+  setPiece('N', BOARD_SIZE - 1, 6);
+  setPiece('R', BOARD_SIZE - 1, 7);
+  for (int i = 0; i < BOARD_SIZE; i++) {
+    setPiece('P', BOARD_SIZE - 2, i);
+  }
+}
 
 // board is notified iff piece on board has movement
 // aka a player has done the move
