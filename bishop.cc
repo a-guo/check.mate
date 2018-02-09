@@ -57,7 +57,43 @@ bool Bishop::validMove(int row, int col) {
   return true;
 }
 
-bool Bishop::tryNextMove();
+bool Bishop::tryNextMove() {
+  // northeast
+  for (int i = 1; i < GRID_SIZE; i++) {
+    // check going overboard
+    if (this->row + i >= GRID_SIZE || this->col + i >= GRID_SIZE) {
+      break;
+    }
+    // check already placed
+    if (thePlayer->isPlaced(this->row + i, this->col + i)) {
+      break;
+    }
+    // check validity
+    if (validMove(row + i, col + i)) {
+      return true;
+    }
+  }
+  // northwest
+  for (int i = 1; i < GRID_SIZE; i++) {
+    if (row + i >= GRID_SIZE || col - i < 0) break;
+    if (thePlayer->isPlaced(row + i, col - i)) break;
+    if (validMove(row + i, col - i)) return true;
+  }
+  // southeast
+  for (int i = 1; i < GRID_SIZE; i++) {
+    if (row - i < 0 || col + i >= GRID_SIZE) break;
+    if (thePlayer->isPlaced(row - i, col + i)) break;
+    if (validMove(row - i, col + i)) return true;
+  }
+  // southwest
+  for (int i = 1; i < GRID_SIZE; i++) {
+    if (row - i < 0 || col - i < 0) break;
+    if (thePlayer->isPlaced(row - i, col - i)) break;
+    if (validMove(row - i, col - i)) return true;
+  }
+  return false;
+}
+
 void Bishop::check(Player* opp);
 void Bishop::uncheck(Player* opp, int row, int col);
 
