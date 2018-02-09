@@ -91,7 +91,69 @@ void Board::addPlayer(Player* p) {
   numPlayer++;
 }
 
-void Board::setPiece(char type, int row, int col);
+void Board::setPiece(char type, int row, int col) {
+  Piece* temp = NULL;
+  if (placed[row][col]) {
+    // delete original piece if there is a piece there
+    delPiece(row, col);
+  }
+  switch (type) {
+    case 'R':
+      temp = new Rook(type, row, col, players[0], this);
+      players[0]->addPiece(temp, row, col);
+      break;
+    case 'r':
+      temp = new Rook(type, row, col, players[1], this);
+      players[1]->addPiece(temp, row, col);
+      break;
+    case 'N':
+      temp = new Knight(type, row, col, players[0], this);
+      players[0]->addPiece(temp, row, col);
+      break;
+    case 'n':
+      temp = new Knight(type, row, col, players[1], this);
+      players[1]->addPiece(temp, row, col);
+      break;
+    case 'B':
+      temp = new Bishop(type, row, col, players[0], this);
+      players[0]->addPiece(temp, row, col);
+      break;
+    case 'b':
+      temp = new Bishop(type, row, col, players[1], this);
+      players[1]->addPiece(temp, row, col);
+      break;
+    case 'Q':
+      temp = new Queen(type, row, col, players[0], this);
+      players[0]->addPiece(temp, row, col);
+      break;
+    case 'q':
+      temp = new Queen(type, row, col, players[1], this);
+      players[1]->addPiece(temp, row, col);
+      break;
+    case 'K':
+      temp = new King(type, row, col, players[0], this);
+      players[0]->addPiece(temp, row, col);
+      break;
+    case 'k':
+      temp = new King(type, row, col, players[1], this);
+      players[1]->addPiece(temp, row, col);
+      break;
+    case 'P':
+      temp = new Pawn(type, row, col, players[0], this);
+      players[0]->addPiece(temp, row, col);
+      break;
+    case 'p':
+      temp = new Pawn(type, row, col, players[1], this);
+      players[1]->addPiece(temp, row, col);
+      break;
+    default:
+      break;
+  }
+  temp->addNeighbours();
+  theBoard[row][col] = temp;
+  theDisplay->notify(-1, -1, row, col, type);
+  placed[row][col] = true;
+}
 
 Piece* Board::getPiece(int row, int col) {
   return theBoard[row][col];
