@@ -75,6 +75,8 @@ void Board::defaultInit(Player* p1, Player* p2) {
   }
 }
 
+
+
 // board is notified iff piece on board has movement
 // aka a player has done the move
 void Board::notify(int iRow, int iCol, int fRow, int fCol) {
