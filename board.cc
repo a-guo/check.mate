@@ -11,6 +11,7 @@ using namespace std;
 const int BOARD_SIZE = 8;
 const int MAX_PIECE = 32;
 
+
 Board::Board(int maxPlayer) : maxPlayer(maxPlayer), numPlayer(0), currentPlayer(0) {
   theBoard = new Piece** [BOARD_SIZE];
   theDisplay = new Textdisplay[BOARD_SIZE];
