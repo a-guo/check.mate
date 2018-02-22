@@ -4,8 +4,7 @@
 #include "piece.h"
 #include "board.h"
 #include "textdisplay.h"
-#include "player.h"
-
+#include "player.h"k
 
 class King : class Piece {
  public:
