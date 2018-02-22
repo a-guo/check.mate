@@ -8,7 +8,12 @@ int abs(int x) {
   return x;
 }
 
-King::King(char type, int row, int col, Player* p, Board* theBoard);
+King::King(char type, int row, int col, Player* p, Board* theBoard) :
+          Piece(type, row, col, p, theBoard) {
+  if (thePlayer->getPNum() == 0) type = 'K';
+  else type = 'k';
+}
+
 bool King::validMove(int row, int col);
 bool King::tryNextMove();
 void King::check(Player* opp);
