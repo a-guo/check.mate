@@ -1,13 +1,19 @@
 #include "king.h"
+#include <cstdlib>
 
 using namespace std;
 
-King::King(int x, int y) : x(x), y(y) {};
-
-King::~King() {
-  return;
+int abs(int x) {
+  if (x < 0) return x;
+  return x;
 }
 
-void King::setPiece(int x, int y);
+King::King(char type, int row, int col, Player* p, Board* theBoard);
+bool King::validMove(int row, int col);
+bool King::tryNextMove();
+void King::check(Player* opp);
+void King::uncheck(Player* opp, int row, int col);
+void King::notifyDisplay(Textdisplay& t);
+void King::upgrade();
 
-std::vector King::getPiece(Piece piece);
+void castling();
