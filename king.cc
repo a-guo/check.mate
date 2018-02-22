@@ -18,7 +18,8 @@ bool King::validMove(int row, int col);
 bool King::tryNextMove();
 void King::check(Player* opp);
 void King::uncheck(Player* opp, int row, int col);
-void King::notifyDisplay(Textdisplay& t);
-void King::upgrade();
 
-void castling();
+
+void King::notifyDisplay(Textdisplay& t) {}
+void King::upgrade() {}
+void castling() {}
