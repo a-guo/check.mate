@@ -15,7 +15,18 @@ King::King(char type, int row, int col, Player* p, Board* theBoard) :
 }
 
 bool King::validMove(int row, int col);
-bool King::tryNextMove();
+
+bool King::tryNextMove() {
+  return (validMove(row + 1, col + 1) ||
+          validMove(row + 1, col) ||
+          validMove(row + 1, col - 1) ||
+          validMove(row, col + 1) ||
+          validMove(row, col - 1) ||
+          validMove(row - 1, col + 1) ||
+          validMove(row - 1, col) ||
+          validMove(row - 1, col + 1));
+}
+
 void King::check(Player* opp);
 void King::uncheck(Player* opp, int row, int col);
 
