@@ -26,7 +26,7 @@ bool King::validMove(int row, int col) {
   if (thePlayer->isPlaced(row, col)) return false;
   if (thePlayer->isChecked(row, col)) return false;
 
-  
+
   return true;
 }
 
@@ -41,7 +41,25 @@ bool King::tryNextMove() {
           validMove(row - 1, col + 1));
 }
 
-void King::check(Player* opp);
+void King::check(Player* opp) {
+  if (row + 1 < GRID_SIZE && col + 1 < GRID_SIZE)
+    p->check(row + 1, col + 1);
+  if (row + 1 < GRID_SIZE)
+    p->check(row + 1, col);
+  if (row + 1 < GRID_SIZE && col - 1 > 0)
+    p->check(row + 1, col - 1);
+  if (col + 1 < GRID_SIZE)
+    p->check(row, col + 1);
+  if (col - 1 > 0)
+    p->check(row, col - 1);
+  if (row - 1 > 0 && col + 1 < GRID_SIZE)
+    p->check(row - 1, col + 1);
+  if (row - 1 > 0)
+    p->check(row - 1 , col);
+  if (row - 1 > 0 && col - 1 > 0)
+    p->check(row - 1, col - 1);
+}
+
 void King::uncheck(Player* opp, int row, int col);
 
 
