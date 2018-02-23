@@ -11,8 +11,8 @@ class King : class Piece {
    King(char type, int row, int col, Player* p, Board* theBoard);
    bool validMove(int row, int col);
    bool tryNextMove();
-   void check(Player* opp);
-   void uncheck(Player* opp, int row, int col);
+   void check(Player* p);
+   void uncheck(Player* p, int row, int col);
    void notifyDisplay(Textdisplay& t);
    void upgrade();
 

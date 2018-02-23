@@ -41,7 +41,7 @@ bool King::tryNextMove() {
           validMove(row - 1, col + 1));
 }
 
-void King::check(Player* opp) {
+void King::check(Player* p) {
   if (row + 1 < GRID_SIZE && col + 1 < GRID_SIZE)
     p->check(row + 1, col + 1);
   if (row + 1 < GRID_SIZE)
@@ -60,7 +60,7 @@ void King::check(Player* opp) {
     p->check(row - 1, col - 1);
 }
 
-void King::uncheck(Player* opp, int row, int col) {
+void King::uncheck(Player* p, int row, int col) {
   if (row + 1 < GRID_SIZE && col + 1 < GRID_SIZE)
     p->uncheck(row + 1, col + 1);
   if (row + 1 < GRID_SIZE)
