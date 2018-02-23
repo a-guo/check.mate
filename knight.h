@@ -2,6 +2,9 @@
 #define KNIGHT_H
 
 #include "piece.h"
+#include "board.h"
+#include "textdisplay.h"
+#include "player.h"
 
 class Knight : class Piece {
  public:
