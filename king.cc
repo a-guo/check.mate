@@ -14,7 +14,21 @@ King::King(char type, int row, int col, Player* p, Board* theBoard) :
   else type = 'k';
 }
 
-bool King::validMove(int row, int col);
+bool King::validMove(int row, int col) {
+  if ((this->col == col && this->row == row) || (col + 1 > GRID_SIZE) || col < 0) return false;
+  if ((this->col == col && this->row == row) || (row + 1 > GRID_SIZE) || row < 0) return false;
+
+  // moving according to chess rules
+  if (!(abs(this->row - row) == 1 && abs(this->col - col) == 1) ||
+        abs(this->row - row) == 1 && (this->col == col) ||
+            (this->row == row && abs(this->col - col) == 1))
+            return false;
+  if (thePlayer->isPlaced(row, col)) return false;
+  if (thePlayer->isChecked(row, col)) return false;
+
+  
+  return true;
+}
 
 bool King::tryNextMove() {
   return (validMove(row + 1, col + 1) ||
