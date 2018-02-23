@@ -19,9 +19,43 @@ bool Knight::tryNextMove() {
           validMove(row - 1, col - 2));
 }
 
-void Knight::check(Player* opp);
+void Knight::check(Player* opp) {
+  if (row + 2 < GRID_SIZE && col + 1 < GRID_SIZE)
+    opp->check(row + 2, col + 1);
+  if (row + 2 < GRID_SIZE && col - 1 > 0)
+    opp->check(row _ 2, col - 1);
+  if (row - 2 > 0 && col + 1 < GRID_SIZE)
+    opp->check(row - 2, col + 1);
+  if (row - 2 > 0 && col - 1 > 0)
+    opp->check(row - 2, col - 1);
+  if (row + 1 < GRID_SIZE && col + 2 < GRID_SIZE)
+    opp->check(row + 1, col + 2);
+  if (row + 1 < GRID_SIZE && col - 2 > 0)
+    opp->check(row + 1, col - 2);
+  if (row - 1 > 0 && col + 2 > GRID_SIZE)
+    opp->check(row - 1, col + 2);
+  if (row - 1 > 0 && col - 2 > 0)
+    opp->check(row - 1, col - 2);
+}
 
-void Knight::uncheck(Player* opp, int row, int col);
+void Knight::uncheck(Player* opp, int row, int col) {
+  if (row + 2 < GRID_SIZE && col + 1 < GRID_SIZE)
+    opp->uncheck(row + 2, col + 1);
+  if (row + 2 < GRID_SIZE && col - 1 > 0)
+    opp->uncheck(row _ 2, col - 1);
+  if (row - 2 > 0 && col + 1 < GRID_SIZE)
+    opp->uncheck(row - 2, col + 1);
+  if (row - 2 > 0 && col - 1 > 0)
+    opp->uncheck(row - 2, col - 1);
+  if (row + 1 < GRID_SIZE && col + 2 < GRID_SIZE)
+    opp->uncheck(row + 1, col + 2);
+  if (row + 1 < GRID_SIZE && col - 2 > 0)
+    opp->uncheck(row + 1, col - 2);
+  if (row - 1 > 0 && col + 2 > GRID_SIZE)
+    opp->uncheck(row - 1, col + 2);
+  if (row - 1 > 0 && col - 2 > 0)
+    opp->uncheck(row - 1, col - 2);
+}
 
 void Knight::notifyDisplay(Textdisplay& t) {}
 void Knight::upgrade() {}
