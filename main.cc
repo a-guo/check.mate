@@ -163,7 +163,7 @@ int main() {
     }
     else if (op == "check") {
       char col;
-      int row;
+      int row; 
       cin >> col >> row;
       cout << game->getPlayer()->isChecked(GRID_SIZE - row, col - 'a') << endl;
     }
