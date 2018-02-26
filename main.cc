@@ -100,7 +100,52 @@ int main() {
     }
     else if (op == "setup") {
       string opp;
+      if (startGame) {
+        cout << "Sorry, the game has started, you cannot setup the board"<< endl;
+        continue;
+      }
+      Player* pp1 = new Human(game, MAX_PLAYER, 0, 0);
+      Player* pp2 = new Human(game, MAX_PLAYER, GRID_SIZE - 1, 1);
+      pp1->addOpp(pp2);
+      pp2->addOpp(pp1);
+      game->addPlayer(pp1);
+      game->addPlayer(pp2);
+      while (cin >> opp) {
+        if (opp == "+") {
+          char type, colc;
+          int col, row;
+          cin type >> colc >> row;
+          col = colc - 'a';
+          game->setPeice(type, GRID_SIZE - row, col);
+          cout << *game;
+        } else if (opp == "-") {
+          char colc;
+          int col, row;
+          cin >> colc >> row;
+          col = colc - 'a';
+          game->delPiece(GRID_SIZE - row, col);
+          cout << *game;
+        } else if (opp == '=') {
+          string colour;
+          cin >> colour;
+          if (colour == "white") {
+            game->setTurn(0);
+          } else if (colour == "black") {
+            game->setTurn(1);
+          }
+        } else if (opp == "done") {
+          if (!game->checkForStart()) {
+            cout << "Not a valid start! Please check your board!" << endl;
+            cout << *game;
+          } else {
+            break;
+          }
+        }
+      }
 
+    }
+    else if (op == "resign") {
+      
     }
   }
 }
