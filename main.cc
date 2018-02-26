@@ -73,8 +73,34 @@ int main() {
       game->defaultInit(pp1, pp2);
       startGame = true;
       cout << *game;
-    } else if (op == "move") {
-      
+    }
+    else if (op == "move") {
+      while (!game->getPlayer()->move()) {
+        cout << "Invalid move, please re-enter coordinates" << endl;
+      }
+      game->nextTurn();
+      // player got checked
+      if (game->getPlayer()->getChecked()) {
+        cout << *game;
+        cout << "Player" << game->getTurn() + 1 << " lost!" << endl;
+        game->addScore();
+        game->printScore();
+
+        string response;
+        cout << "another game? (y/n):";
+        cin >> response;
+        startGame = false;
+        if (response == "n") return 1;
+        else {
+          cout << "enter game [player1] [player2] to restart!" << endl;
+          //startGame = false;
+        }
+      }
+      startGame = true;
+    }
+    else if (op == "setup") {
+      string opp;
+
     }
   }
 }
