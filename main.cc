@@ -145,7 +145,15 @@ int main() {
 
     }
     else if (op == "resign") {
-      
+      if (startGame) {
+        game->nextTurn();
+        game->addScore();
+      } else {
+        cout << "A game has not been established yet" << endl;
+      }
+    }
+    else if (op == "print") {
+      cout << *game;
     }
   }
 }
