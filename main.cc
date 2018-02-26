@@ -155,5 +155,17 @@ int main() {
     else if (op == "print") {
       cout << *game;
     }
+    else if (op == "try") {
+      char col;
+      int row;
+      cin >> col >> row;
+      cout << game->getPiece(GRID_SIZE - row, col - 'a')->tryToMove() << endl;
+    }
+    else if (op == "check") {
+      char col;
+      int row;
+      cin >> col >> row;
+      cout << game->getPlayer()->isChecked(GRID_SIZE - row, col - 'a') << endl;
+    }
   }
 }
