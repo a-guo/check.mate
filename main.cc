@@ -1,8 +1,20 @@
+#include "player.h"
+#include "board.h"
+#include "trashbin.h"
+#include "piece.h"
+#include "textdisplay.h"
 #include <iostream>
-// must include all other header files
-#include <board.h>
-#include <textdisplay.h>
+#include <cstdlib>
+#include <string>
+
+#include <time.h>
+
+using namespace std;
+
+const int MAX_PLAYER = 2;
+const int BOARD_SIZE = 8;
 
 int main() {
-
+  Board* game = new Board(MAX_PLAYER);
+  
 }
