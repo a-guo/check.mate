@@ -47,6 +47,24 @@ bool Queen::validMove(int row, int col) {
     }
   }
   // up + left
+  else if (row > this->row && col < this->col) {
+    for (int i = 1; i < row - this->row; i++) {
+      if (theBoard->isPlaced(this->row + i, this->col - i)) return false;
+    }
+  }
+  // down + right
+  else if (row < this->row && col > this->col) {
+    for (int i = 1; i < this->row - row; i++) {
+      if (theBoard->isPlaced(this->row - i, this->col + i)) return false;
+    }
+  }
+  // down + left
+  else if (row < this->row && col < this->col) {
+    for (int i = 1; i < this->row - row; i++) {
+      if (theBoard->isPlaced(this->row - i, this->col - i)) return false;
+    }
+  }
+  return true;
 }
 
 bool Queen::tryNextMove();
