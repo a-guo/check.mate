@@ -67,7 +67,50 @@ bool Queen::validMove(int row, int col) {
   return true;
 }
 
-bool Queen::tryNextMove();
+bool Queen::tryNextMove() {
+  // right
+  for (int i = col + 1; i < GRID_SIZE; i++) {
+    if (validMove(row, i)) return true;
+  }
+  // <---R
+  for (int i = col - 1; i >= 0; i--) {
+    if (validMove(row, i)) return true;
+  }
+  // R up
+  for (int i = row + 1; i < GRID_SIZE; i++) {
+    if (validMove(i, col)) return true;
+  }
+  // R down
+  for (int i = row - 1; i >= 0; i--) {
+    if (validMove(i, col)) return true;
+  }
+
+  for (int i = 1; i < GRID_SIZE; i++) {
+    // check overbounds
+    if (this->row + i >= GRID_SIZE || this->col + i >= GRID_SIZE) break;
+    // check placement
+    if (thePlayer->isPlaced(row + i, col + i)) break;
+    if (validMove(row + i, col + i)) return true;
+  }
+  // upper left
+  for (int i = 1; i < GRID_SIZE; i++) {
+    if (this->row + i >= GRID_SIZE || this->col - i >= GRID_SIZE) break;
+    if (thePlayer->isPlaced(row + i, col - i)) break;
+    if (validMove(row + i, col - i)) return true;
+  }
+  for (int i = 1; i < GRID_SIZE; i++) {
+    if (this->row - i >= GRID_SIZE || this->col + i >= GRID_SIZE) break;
+    if (thePlayer->isPlaced(row - i, col + i)) break;
+    if (validMove(row - i, col + i)) return true;
+  }
+  for (int i = 1; i < GRID_SIZE; i++) {
+    if (this->row - i >= GRID_SIZE || this->col - i >= GRID_SIZE) break;
+    if (thePlayer->isPlaced(row - i, col - i)) break;
+    if (validMove(row - i, col - i)) return true;
+  }
+  return false;
+}
+
 void Queen::check(Player* opp);
 void Queen::uncheck(Player* opp, int row, int col);
 
