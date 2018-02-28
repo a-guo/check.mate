@@ -111,7 +111,17 @@ bool Queen::tryNextMove() {
   return false;
 }
 
-void Queen::check(Player* opp);
+void Queen::check(Player* opp) {
+  // right
+  for (int i = col + 1; i < GRID_SIZE; i++) {
+    if (theBoard->isPlaced(row, i)) {
+      opp->check(row, i);
+      break;
+    }
+    opp->check(row, i);
+  }
+  // <-- R
+}
 void Queen::uncheck(Player* opp, int row, int col);
 
 void Queen::notifyDisplay(Textdisplay& t) {}
