@@ -121,7 +121,67 @@ void Queen::check(Player* opp) {
     opp->check(row, i);
   }
   // <-- R
+  for (int i = col - 1; i >= 0; i--) {
+    if (theBoard->isPlaced(row, i)) {
+      opp->check(row, i);
+      break;
+    }
+    opp->check(row, i);
+  }
+  // R up
+  for (int i = row + 1; i < GRID_SIZE; i++) {
+    if (theBoard->isPlaced(i, col)) {
+      opp->check(i, col);
+      break;
+    }
+    opp->check(i, col);
+  }
+  // R down
+  for (int i = row - 1; i >= 0; i--) {
+    if (theBoard->isPlaced(i, col)) {
+      opp->check(i, col);
+      break;
+    }
+    opp->check(i, col);
+  }
+  // up right
+  for (int i = 0; i < GRID_SIZE; i++) {
+    if (row + i > GRID_SIZE || col + i > GRID_SIZE) break;
+    if (theBoard->isPlaced(row + i, col+ i)) {
+      opp->check(row + i, col + i);
+      break;
+    }
+    opp->check(row + i, col + i);
+  }
+  // up left
+  for (int i = 0; i < GRID_SIZE; i++) {
+    if (row + i > GRID_SIZE || col - i < 0) break;
+    if (theBoard->isPlaced(row + i, col - i)) {
+      opp->check(row + i, col - i);
+      break;
+    }
+    opp->check(row + i, col - i);
+  }
+  // down right
+  for (int i = 0; i < GRID_SIZE; i++) {
+    if (row - i < 0 || col + i > GRID_SIZE) break;
+    if (theBoard->isPlaced(row - i, col + i)) {
+      opp->check(row - i, col + i);
+      break;
+    }
+    opp->check(row - i, col + i);
+  }
+  // down left
+  for (int i = 0; i < GRID_SIZE; i++) {
+    if (row - i < 0 || col - i < 0) break;
+    if (theBoard->isPlaced(row - i, col - i)) {
+      opp->check(row - i, col - i);
+      break;
+    }
+    opp->check(row - i, col - i);
+  }
 }
+
 void Queen::uncheck(Player* opp, int row, int col);
 
 void Queen::notifyDisplay(Textdisplay& t) {}
