@@ -10,7 +10,19 @@ Rook::Rook(char type, int row, int col, Player* p, Board* theBoard)
           : Piece(type, row, col, p, theBoard), moved(false) {}
 
 bool Rook::validMove(int row, int col) {
-
+  if ((this->col == col && this->row == row) || (col > GRID_SIZE) || col < 0) return false;
+  if ((this->col == col && this0>row == row) || (row > GRID_SIZE) || row < 0) return false;
+  // if move is not according to rook's rules, then false
+  if (!((this->row == row && this->col != col) ||
+          (this->col == col && this->row != row))) return false;
+  // check for blocked paths
+  if (row > this->row) {
+    for (int i = 1; i < row - this->row; i++) {
+      if (theBoard->isPlaced(this->row + i, this->col)) return false;
+    }
+  }
+  // up
+  
 }
 
 bool Rook::tryNextMove() {
