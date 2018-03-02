@@ -95,7 +95,34 @@ void Rook::check(Player* opp) {
 }
 
 void Rook::uncheck(Player* opp, int row, int col) {
-
+  for (int i = col + 1; i < GRID_SIZE; i++) {
+    if (theBoard->isPlaced(row, i)) {
+      opp->uncheck(row, i);
+      break;
+    }
+    opp->uncheck(row, i);
+  }
+  for (int i = 0; i < col; i++) {
+    if (theBoard->isPlaced(row, i)) {
+      opp->uncheck(row, i);
+      break;
+    }
+    opp->uncheck(row, i);
+  }
+  for (int i = row + 1; i < GRID_SIZE; i++) {
+    if (theBoard->isPlaced(i, col)) {
+      opp->uncheck(i, col);
+      break;
+    }
+    opp->uncheck(i , col);
+  }
+  for (int i = 0; i < row; i++) {
+    if (theBoard->isPlaced(i, col)) {
+      opp->uncheck(i, col);
+      break;
+    }
+    opp->uncheck(i, col);
+  }
 }
 
 void Rook::notifyDisplay(Textdisplay& t) {}
