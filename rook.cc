@@ -22,7 +22,26 @@ bool Rook::validMove(int row, int col) {
     }
   }
   // up
-  
+  else if (row < this->row) {
+    for (int i = 1; i < this->row - row; i++) {
+      if (theBoard->isPlaced(this->row - i, this->col)) return false;
+    }
+  }
+  //R up
+  else if (col > this->col) {
+    for (int i = 1; i < col - this->col; i++) {
+      if (theBoard->isPlaced(this->row, this->col + i)) return false;
+    }
+  }
+  // R down
+  else if (col < this->col) {
+    for (int i = 1; i < this->col - col; i++) {
+      if (theBoard->isPlaced(this->row, this->col - i)) return false;
+    }
+  }
+  // return false if final destination is my own Piece
+  if (thePlayer->isPlaced(row, col)) return false;
+  return true;
 }
 
 bool Rook::tryNextMove() {
