@@ -11,5 +11,8 @@ Level1::Level1(Board* theBoard, int numOpp, int bottomLine, int playerNum)
               : Engine(theBoard, numOpp, bottomLine, playerNum) {}
 
 bool Level1::move() {
-  
+  // randomly select a Piece
+  bool done = false;
+  int i = rand() % numPiece;
+  while ()
 }
