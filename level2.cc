@@ -29,6 +29,29 @@ bool Level2::move() {
       }
     }
   }
-  
+
   // no attack available, randomly move
+  int i = rand() % numPiece();
+  while (!pList[i]->tryToMove()) {
+    i = (i + 1) % numPiece;
+  }
+  int iRow = pList[i]->getRow();
+  int iCol = pList[i]->getCol();
+
+  for (int fRow = 0; fRow < GRID_SIZEl; fRow++) {
+    for (int fCol = 0; fCol < GRID_SIZE; fCol++) {
+      if (myPiece[iRow][iCol]->validMove(fRow, fCol) &&
+      myPiece[fRow][fCol] == NULL) {
+        if (pList[i]->move(fRow, fCol)) {
+          myPiece[fRow][fCol] = myPiece[iRow][iCol];
+          myPiece[iRow][iCol] = NULL;
+          cout << "Computer moves " << (char)('a' + iCol) << GRID_SIZE - iRow
+          << " " << (char)('a' + fCol) << GRID_SIZE - fRow << endl;
+          theBoard->notify(iRow, iCol, fRow, fCol);
+          return true;
+        }
+      }
+    }
+  }
+  return true;
 }
