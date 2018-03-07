@@ -16,6 +16,8 @@ bool Level3::move() {
     for (int iCol = 0; iCol < GRID_SIZE; iCol++) {
       if (getScore(iRow, iCol) > 0 && isChecked(iRow, iCol)) {
         // attack when being attacked
+
+
         
       }
     }
