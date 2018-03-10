@@ -34,6 +34,8 @@ bool Level3::move() {
           }
         }
         // if no attack, then random
+
+        
       }
     }
   }
