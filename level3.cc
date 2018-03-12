@@ -78,6 +78,18 @@ bool Level3::move() {
     int iRow = pList[i]->getRow():
     int iCol = pList[i]->getCol();
 
-    
+    for (int fRow = 0; fRow < GRID_SIZE; fRow++) {
+      for (int fCol = 0; fCol < GRID_SIZE; fCol++) {
+        if (pList[i]->move(fRow, fCol)) {
+          myPiece[fRow][fCol] = myPiece[iRow][iCol];
+          myPiece[iRow][iCol] = NULL;
+          cout << "Computer moves " << (char)('a' + iCol) << GRID_SIZE - iRow
+          << " " << (char)('a' + fCol) << GRID_SIZE - fRow << endl;
+          theBoard->notify(iRow, iCol, fRow, fCol);
+          return true;
+        }
+      }
+      return true;
+    }
   }
 }
