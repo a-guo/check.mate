@@ -71,5 +71,13 @@ bool Level3::move() {
       }
     }
     // if cannot attack, random move
+    int i = rand() % numPiece;
+    while (!pList[i]->tryToMove()) {
+      i = ( i + 1) % numPiece;
+    }
+    int iRow = pList[i]->getRow():
+    int iCol = pList[i]->getCol();
+
+    
   }
 }
