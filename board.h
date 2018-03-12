@@ -3,7 +3,7 @@
 
 
 #include <iostream>
-#include "trash.h"
+#include "trashbin.h"
 #include "textdisplay.h"
 #include "window.h"
 
@@ -17,9 +17,9 @@ class Board {
     int* scores;
     Piece*** theBoard;
     bool** placed;
-    Textdisplay* theDisplay;
+    TextDisplay* theDisplay;
     Player** players;
-    Trash* theTrash;
+    TrashBin* theTrash;
 public:
     Board(int maxPlayer);
     // default initialize to 2 players
@@ -39,7 +39,7 @@ public:
     void setTurn(int tNum);
     void addScore();
     void printScore();
-    
+
     ~Board();
 
     friend std::ostream &operator<<(std::ostream &out, const Board &b);

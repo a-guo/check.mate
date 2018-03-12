@@ -1,8 +1,12 @@
 #include "player.h"
+#include "human.h"
 #include "board.h"
 #include "trashbin.h"
 #include "piece.h"
 #include "textdisplay.h"
+#include "level1.h"
+#include "level2.h"
+#include "level3.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -114,9 +118,9 @@ int main() {
         if (opp == "+") {
           char type, colc;
           int col, row;
-          cin type >> colc >> row;
+          cin >> type >> colc >> row;
           col = colc - 'a';
-          game->setPeice(type, GRID_SIZE - row, col);
+          game->setPiece(type, GRID_SIZE - row, col);
           cout << *game;
         } else if (opp == "-") {
           char colc;
@@ -125,7 +129,7 @@ int main() {
           col = colc - 'a';
           game->delPiece(GRID_SIZE - row, col);
           cout << *game;
-        } else if (opp == '=') {
+        } else if (opp == "=") {
           string colour;
           cin >> colour;
           if (colour == "white") {
@@ -163,7 +167,7 @@ int main() {
     }
     else if (op == "check") {
       char col;
-      int row; 
+      int row;
       cin >> col >> row;
       cout << game->getPlayer()->isChecked(GRID_SIZE - row, col - 'a') << endl;
     }

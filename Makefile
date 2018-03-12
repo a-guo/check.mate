@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++14 -Wall -Werror=vla -MMD
 EXEC = checkmate
-OBJECTS = main.o board.o piece.o pawn.o knight.o bishop.o rook.o queen.o king.o textdisplay.o player.o human.o engine.o level1.o level2.o level3.o window.o
+OBJECTS = main.o board.o piece.o pawn.o knight.o bishop.o rook.o queen.o king.o textdisplay.o player.o human.o engine.o level1.o level2.o level3.o trashbin.o window.o
 DEPENDS = ${OBJECTS:.o=.d}
 
 ${EXEC}: ${OBJECTS}

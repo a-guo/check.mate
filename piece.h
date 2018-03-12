@@ -13,13 +13,13 @@ const int MAX_NEIGHBOURS = 8;
 class Piece {
 protected:
   char type;
-  int row, int col;
+  int row, col;
   int index;
   static Piece* pawnJustMoved;
   Player* thePlayer;
   Piece** neighbour;
   Board* theBoard;
-  XWindow *w;
+  Xwindow *w;
  public:
    Piece(char type, int row, int col, Player *p, Board *theBoard);
    // void setCoord(int row, int col);
@@ -27,7 +27,7 @@ protected:
    virtual bool tryNextMove() = 0;
    virtual void check(Player* opp) = 0;
    virtual void uncheck(Player* opp, int row, int col) = 0;
-   virtual void notifyDisplay(Textdisplay& t) = 0;
+   virtual void notifyDisplay(TextDisplay& t) = 0;
 
    bool move(int fRow, int fCol);
    bool notifyKing();
@@ -43,7 +43,7 @@ protected:
    int getCol();
    char getType();
 
-   ~Piece() virtual;
+   virtual ~Piece();
 };
 
 #endif
