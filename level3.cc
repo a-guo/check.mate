@@ -34,7 +34,21 @@ bool Level3::move() {
           }
         }
         // if no attack, then random
+        for (int fRow = 0; fRow < GRID_SIZE; fRow++) {
+          for (int fCOl = 0; fCol < GRID_SIZE; fCol++) {
+            // there could be an error here
+            if (myPiece[iRow][fCol]->move(fRow, fCol)) {
+              myPiece[fRow][fCol] = myPiece[iRow][iCol];
+              myPiece[iRow][iCol] = NULL;
+              cout << "Computer moves " << (char)('a' + iCol) << GRID_SIZE - iRow
+              << " " << (char)('a' + fCol) << GRID_SIZE - fRow << endl;
+              theBoard->notify(iRow, iCol, fRow, fCol);
+              return true;
+            }
+          }
+        }
       }
     }
+    // if no need to defend, then try attacking
   }
 }
