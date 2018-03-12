@@ -49,47 +49,47 @@ bool Level3::move() {
         }
       }
     }
-    // if no need to defend, then try attacking
-    for (int fRow = 0; fRow < GRID_SIZE; fRow++) {
-      for (int fCol = 0; fCol < GRID_SIZE; fCol++) {
-        // target exists and I can attack, then attack
-        if (abs(Opps[0]->getScore(fRow, fCol)) > 0 && Opps[0]->isChecked(fRow, fCol)) {
-          for (int i = 0; i < numPiece; i++) {
-            if (pList[i]->move(fRow, fCol)) {
-              int iCol = pList[i]->getCol();
-              int iRow = pList[i]->getRow();
+  }
+  // if no need to defend, then try attacking
+  for (int fRow = 0; fRow < GRID_SIZE; fRow++) {
+    for (int fCol = 0; fCol < GRID_SIZE; fCol++) {
+      // target exists and I can attack, then attack
+      if (abs(Opps[0]->getScore(fRow, fCol)) > 0 && Opps[0]->isChecked(fRow, fCol)) {
+        for (int i = 0; i < numPiece; i++) {
+          if (pList[i]->move(fRow, fCol)) {
+            int iCol = pList[i]->getCol();
+            int iRow = pList[i]->getRow();
 
-              myPiece[fRow][fCol] = myPiece[iRow][iCol];
-              myPiece[iRow][iCol] = NULL;
-              cout << "Computer moves " << (char)('a' + iCol) << GRID_SIZE - iRow
-              << " " << (char)('a' + fCol) << GRID_SIZE - fRow << endl;
-              theBoard->notify(iRow, iCol, fRow, fCol);
-              return true;
-            }
+            myPiece[fRow][fCol] = myPiece[iRow][iCol];
+            myPiece[iRow][iCol] = NULL;
+            cout << "Computer moves " << (char)('a' + iCol) << GRID_SIZE - iRow
+            << " " << (char)('a' + fCol) << GRID_SIZE - fRow << endl;
+            theBoard->notify(iRow, iCol, fRow, fCol);
+            return true;
           }
         }
       }
     }
-    // if cannot attack, random move
-    int i = rand() % numPiece;
-    while (!pList[i]->tryToMove()) {
-      i = ( i + 1) % numPiece;
-    }
-    int iRow = pList[i]->getRow():
-    int iCol = pList[i]->getCol();
+  }
+  // if cannot attack, random move
+  int i = rand() % numPiece;
+  while (!pList[i]->tryToMove()) {
+    i = ( i + 1) % numPiece;
+  }
+  int iRow = pList[i]->getRow():
+  int iCol = pList[i]->getCol();
 
-    for (int fRow = 0; fRow < GRID_SIZE; fRow++) {
-      for (int fCol = 0; fCol < GRID_SIZE; fCol++) {
-        if (pList[i]->move(fRow, fCol)) {
-          myPiece[fRow][fCol] = myPiece[iRow][iCol];
-          myPiece[iRow][iCol] = NULL;
-          cout << "Computer moves " << (char)('a' + iCol) << GRID_SIZE - iRow
-          << " " << (char)('a' + fCol) << GRID_SIZE - fRow << endl;
-          theBoard->notify(iRow, iCol, fRow, fCol);
-          return true;
-        }
+  for (int fRow = 0; fRow < GRID_SIZE; fRow++) {
+    for (int fCol = 0; fCol < GRID_SIZE; fCol++) {
+      if (pList[i]->move(fRow, fCol)) {
+        myPiece[fRow][fCol] = myPiece[iRow][iCol];
+        myPiece[iRow][iCol] = NULL;
+        cout << "Computer moves " << (char)('a' + iCol) << GRID_SIZE - iRow
+        << " " << (char)('a' + fCol) << GRID_SIZE - fRow << endl;
+        theBoard->notify(iRow, iCol, fRow, fCol);
+        return true;
       }
-      return true;
     }
   }
+  return true;
 }
