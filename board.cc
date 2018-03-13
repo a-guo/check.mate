@@ -256,7 +256,7 @@ Board::~Board() {
   delete [] theBoard;
 }
 
-ostream &Board::operator<<(ostream &out, const Board &b) {
+ostream& operator<<(ostream &out, const Board &b) {
   out << *(b.theDisplay);
   return out;
 }
