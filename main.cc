@@ -163,7 +163,7 @@ int main() {
       char col;
       int row;
       cin >> col >> row;
-      cout << game->getPiece(GRID_SIZE - row, col - 'a')->tryToMove() << endl;
+      cout << game->getPiece(GRID_SIZE - row, col - 'a')->tryNextMove() << endl;
     }
     else if (op == "check") {
       char col;
