@@ -3,6 +3,14 @@
 #include "trashbin.h" // is this even called trashbin?
 #include "player.h"
 #include "piece.h"
+
+#include "pawn.h"
+#include "rook.h"
+#include "bishop.h"
+#include "knight.h"
+#include "king.h"
+#include "queen.h"
+
 #include <stdlib.h>
 #include <iostream>
 
@@ -14,10 +22,10 @@ const int MAX_PIECE = 32;
 
 Board::Board(int maxPlayer) : maxPlayer(maxPlayer), numPlayer(0), currentPlayer(0) {
   theBoard = new Piece** [BOARD_SIZE];
-  theDisplay = new Textdisplay[BOARD_SIZE];
+  theDisplay = new TextDisplay (BOARD_SIZE);
   placed = new bool* [BOARD_SIZE];
   players = new Player* [maxPlayer];
-  theTrash = new Trash [MAX_PIECE];
+  theTrash = new TrashBin (MAX_PIECE);
   scores = new int(2);
   scores[0] = 0;
   scores[1] = 0;
@@ -46,7 +54,7 @@ void Board::defaultInit(Player* p1, Player* p2) {
     theBoard[i] = new Piece* [BOARD_SIZE];
     for (int j = 0; j < BOARD_SIZE; j++) {
       theBoard[i][j] = NULL;
-      place[i][j] = false;
+      placed[i][j] = false;
     }
   }
   // black initialization
@@ -237,7 +245,7 @@ void Board::printScore() {
 }
 
 Board::~Board() {
-  theTrash->emptyTrash();
+  theTrash->emptyBin();
   for(int i = 0; i < BOARD_SIZE; i++) {
     for(int j = 0; j < BOARD_SIZE; j++) {
       delete theBoard[i][j];

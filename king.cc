@@ -80,6 +80,6 @@ void King::uncheck(Player* p, int row, int col) {
 }
 
 
-void King::notifyDisplay(Textdisplay& t) {}
+void King::notifyDisplay(TextDisplay& t) {}
 void King::upgrade() {}
 void castling() {}

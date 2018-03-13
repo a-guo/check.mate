@@ -82,7 +82,7 @@ void Pawn::uncheck(Player *opp, int row, int col) {
   }
 }
 
-void Pawn::notifyDisplay(Textdisplay& t) {
+void Pawn::notifyDisplay(TextDisplay& t) {
   t.notify(-1, -1, row, col, type);
 }
 

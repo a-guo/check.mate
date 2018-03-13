@@ -57,5 +57,5 @@ void Knight::uncheck(Player* opp, int row, int col) {
     opp->uncheck(row - 1, col - 2);
 }
 
-void Knight::notifyDisplay(Textdisplay& t) {}
+void Knight::notifyDisplay(TextDisplay& t) {}
 void Knight::upgrade() {}

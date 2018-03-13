@@ -125,6 +125,6 @@ void Rook::uncheck(Player* opp, int row, int col) {
   }
 }
 
-void Rook::notifyDisplay(Textdisplay& t) {}
+void Rook::notifyDisplay(TextDisplay& t) {}
 
 void Rook::upgrade() {}

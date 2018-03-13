@@ -97,6 +97,6 @@ bool Bishop::tryNextMove() {
 void Bishop::check(Player* opp);
 void Bishop::uncheck(Player* opp, int row, int col);
 
-void Bishop::notifyDisplay(Textdisplay& t) {}
+void Bishop::notifyDisplay(TextDisplay& t) {}
 
 void Bishop::upgrade() {}

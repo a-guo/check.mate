@@ -10,7 +10,7 @@ class Bishop : class Piece {
    bool tryNextMove();
    void check(Player* opp);
    void uncheck(Player* opp, int row, int col);
-   void notifyDisplay(Textdisplay& t);
+   void notifyDisplay(TextDisplay& t);
    void upgrade();
 };
 

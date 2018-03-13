@@ -253,5 +253,5 @@ void Queen::uncheck(Player* opp, int row, int col) {
   }
 }
 
-void Queen::notifyDisplay(Textdisplay& t) {}
+void Queen::notifyDisplay(TextDisplay& t) {}
 void Queen::upgrade() {}
