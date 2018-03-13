@@ -219,6 +219,7 @@ bool Board::checkForStart() {
       return false;
     }
   }
+  return true;
 }
 
 void Board::nextTurn() {
