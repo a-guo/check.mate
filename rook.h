@@ -3,7 +3,7 @@
 
 #include "piece.h"
 
-class Rook : class Piece {
+class Rook : public Piece {
   bool moved;
  public:
    Rook(char type, int row, int col, Player* p, Board* theBoard);

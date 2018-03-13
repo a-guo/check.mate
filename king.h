@@ -6,7 +6,7 @@
 #include "textdisplay.h"
 #include "player.h"
 
-class King : class Piece {
+class King : public Piece {
  public:
    King(char type, int row, int col, Player* p, Board* theBoard);
    bool validMove(int row, int col);

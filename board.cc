@@ -150,11 +150,11 @@ void Board::setPiece(char type, int row, int col) {
       players[1]->addPiece(temp, row, col);
       break;
     case 'P':
-      temp = new Pawn(type, row, col, players[0], this);
+      temp = new Pawn(type, row, col, players[0], this, -1);
       players[0]->addPiece(temp, row, col);
       break;
     case 'p':
-      temp = new Pawn(type, row, col, players[1], this);
+      temp = new Pawn(type, row, col, players[1], this, 1);
       players[1]->addPiece(temp, row, col);
       break;
     default:

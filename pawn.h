@@ -3,7 +3,7 @@
 
 #include "piece.h"
 
-class Pawn : class Piece {
+class Pawn : public Piece {
   int front;
   bool firstTime;
  public:
