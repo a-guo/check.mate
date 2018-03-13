@@ -33,7 +33,7 @@ bool Bishop::validMove(int row, int col) {
   // northwest
   else if (row > this->row && col < this->col) {
     for (int i = 1; i < row - this->row; i++) {
-      if (theBoard->isPlaced(this->row + i; this->col - i)) {
+      if (theBoard->isPlaced(this->row + i, this->col - i)) {
         return false;
       }
     }
@@ -94,8 +94,8 @@ bool Bishop::tryNextMove() {
   return false;
 }
 
-void Bishop::check(Player* opp);
-void Bishop::uncheck(Player* opp, int row, int col);
+void Bishop::check(Player* opp) {}
+void Bishop::uncheck(Player* opp, int row, int col) {}
 
 void Bishop::notifyDisplay(TextDisplay& t) {}
 
