@@ -63,7 +63,7 @@ bool Piece::move(int fRow, int fCol) {
 // notifyKing() returns true when the King is not in check, and false otherwise
 bool Piece::notifyKing() {
   Piece* king = thePlayer->getKing();
-  return ! thePlayer->isChecked(king->getRow()), king->getCol());
+  return ! thePlayer->isChecked(king->getRow(), king->getCol());
 }
 
 void Piece::addNeighbours() {
@@ -73,7 +73,7 @@ void Piece::addNeighbours() {
     if (theBoard->isPlaced(row, j)) {
       Piece *p = theBoard->getPiece(row, j);
       if (p != NULL) {
-        neightbour[index] = p;
+        neighbour[index] = p;
         p->addNeighbour(this);
         index++;
         break;
@@ -135,7 +135,7 @@ void Piece::addNeighbours() {
   for(int i = 1; i < GRID_SIZE - 1; i++) {
     if (row + i >= GRID_SIZE || col - i < 0) break;
     // check for placement
-    if (theBoard->isPlaced(row + i; col - i)) {
+    if (theBoard->isPlaced(row + i, col - i)) {
       Piece* p = theBoard->getPiece(row + i, col - i);
       if (p != NULL) {
         neighbour[index] = p;
@@ -149,7 +149,7 @@ void Piece::addNeighbours() {
   for(int i = 1; i < GRID_SIZE - 1; i++) {
     if (row - i < 0 || col + i >= GRID_SIZE) break;
     // check for placement
-    if(theBoard->isPlaced(row - i; col + i)) {
+    if(theBoard->isPlaced(row - i, col + i)) {
       Piece* p = theBoard->getPiece(row - i, col + i);
       if (p != NULL) {
         neighbour[index] = p;
@@ -179,7 +179,7 @@ void Piece::addNeighbours() {
 void Piece::addNeighbour(Piece* p) {
   bool in = false;
   for (int i = 0; i < index; i++) {
-    if (neightbour[i] == p) in = true;
+    if (neighbour[i] == p) in = true;
   }
   if (!in) {
     uncheck(thePlayer->getOpp(0), p->getRow(), p->getRow());
@@ -192,7 +192,7 @@ void Piece::addNeighbour(Piece* p) {
 void Piece::notifyNeighboursMoved() {
   for(int i = 0; i < index; i++) {
     neighbour[i]->uncheck(thePlayer, row, col);
-    neighbour[i]->addNeightbours();
+    neighbour[i]->addNeighbours();
     neighbour[i]->check(thePlayer);
   }
 }
