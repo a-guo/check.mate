@@ -95,4 +95,9 @@ bool Human::move() {
     theBoard->notify(iRow, iCol, fRow, fCol);
     return true;
   }
+  // either it should be valid move and no piece at final
+  // coord that is mine
+
+  // just to get rid of non-void function warning
+  return false; // IDK IF THIS IS RIGHT, BUT SHOULDNT REACH HERE
 }
