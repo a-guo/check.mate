@@ -94,7 +94,50 @@ bool Bishop::tryNextMove() {
   return false;
 }
 
-void Bishop::check(Player* opp) {}
+void Bishop::check(Player* opp) {
+  // up right
+  for (int i = 1; i < GRID_SIZE - 1; i++) {
+    // check out of bounds
+    if (this->row + i >= GRID_SIZE || this->col + i >= GRID_SIZE) break;
+    // check placement
+    if (theBoard->isPlaced(this->row + i, this->col + i)) {
+      opp->check(this->row + i, this->col + i);
+      break;
+    }
+    opp->check(this->row + i, this->col + i);
+  }
+
+  // up left
+  for (int i = 1; i < GRID_SIZE - 1; i++) {
+    if (this->row + i >= GRID_SIZE || this->col - i < 0) break;
+    if (theBoard->isPlaced(this->row + i, this->col - i)) {
+      opp->check(this->row + i, this->col - i);
+      break;
+    }
+    opp->check(this->row + i, this->col - i);
+  }
+
+  // down right
+  for (int i = 1; i < GRID_SIZE; i++) {
+    if (this->row - i < 0 || this->col + i >= GRID_SIZE) break;
+    if (theBoard->isPlaced(this->row - i, this->col + i)) {
+      opp->check(this->row - i, this->col + i);
+      break;
+    }
+    opp->check(this->row - i, this->col + i);
+  }
+
+  // down left
+  for (int i = 1; i < GRID_SIZE; i++) {
+    if (this->row - i < 0 || this->col - i > 0) break;
+    if (theBoard->isPlaced(this->row - i, this->col - i)) {
+      opp->check(this->row - i, this->col - i);
+      break;
+    }
+    opp->check(this->row - i, this->col - i);
+  }
+}
+
 void Bishop::uncheck(Player* opp, int row, int col) {}
 
 void Bishop::notifyDisplay(TextDisplay& t) {}
