@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Xwindow(int width=500, int height=500)  {
+Xwindow::Xwindow(int width, int height)  {
   d = XOpenDisplay(NULL);
   if (d == NULL) {
     cerr << "Cannot open display" << endl;
@@ -60,18 +60,18 @@ Xwindow(int width=500, int height=500)  {
 }
 
 
-~Xwindow() {
+Xwindow::~Xwindow() {
   XFreeGC(d, gc);
   XCloseDisplay(d);
 }
 
-void fillRectangle(int x, int y, int width, int height, int colour=Black) {
+void Xwindow::fillRectangle(int x, int y, int width, int height, int colour) {
   XSetForeground(d, gc, colours[colour]);
   XFillRectangle(d, w, gc, x, y, width, height);
   XSetForeground(d, gc, colours[Black]);
 }
 
-void drawString(int x, int y, std::string msg, int colour=Black) {
+void Xwindow::drawString(int x, int y, std::string msg, int colour) {
   XSetForeground(d, gc, colours[colour]);
   Font f = XLoadFont(d, "6x13");
   XTextItem ti;
@@ -84,7 +84,7 @@ void drawString(int x, int y, std::string msg, int colour=Black) {
   XFlush(d);
 }
 
-void drawBigString(int x, int y, std::string msg, int colour=Black) {
+void Xwindow::drawBigString(int x, int y, std::string msg, int colour) {
   XSetForeground(d, gc, colours[colour]);
   // Font f = XLoadFont(d, "-*-helvetica-bold-r-normal--*-240-*-*-*-*-*");
   ostringstream name;
@@ -101,7 +101,7 @@ void drawBigString(int x, int y, std::string msg, int colour=Black) {
   XFlush(d);
 }
 
-void showAvailableFonts() {
+void Xwindow::showAvailableFonts() {
   int count;
   char** fnts = XListFonts(d, "*", 10000, &count);
 
