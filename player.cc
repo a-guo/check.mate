@@ -9,8 +9,8 @@ using namespace std;
 int Player::numKing = 0;
 
 Player::Player(Board* theBoard, int maxOpp, int bottomLine, int playerNum)
-              : theBoard(theBoard), maxOpp(maxOpp), bottomLine(bottomLine),
-              theKing(NULL), numOpp(0), playerNum(playerNum) {
+  : playerNum(playerNum), bottomLine(bottomLine),
+    maxOpp(maxOpp), numOpp(0), theKing(NULL), theBoard(theBoard) {
   // initialize Player's myPiece, Opponents, checked
   Checked = new int* [GRID_SIZE];
   Opps = new Player* [maxOpp];
@@ -70,7 +70,7 @@ void Player::uncheck(int row, int col) {
 
 bool Player::getChecked() {
   // if the King is not checked, or can move, then it is good
-  if (Checked[theKing->getRow()][theKing->getCol()] == 0 || theKing->tryToMove()) {
+  if (Checked[theKing->getRow()][theKing->getCol()] == 0 || theKing->tryNextMove()) {
     return false;
   }
 
@@ -79,7 +79,7 @@ bool Player::getChecked() {
     for(int j = 0; j < GRID_SIZE; j++) {
       // if found a piece, try to move it
       if(myPiece[i][j] != NULL) {
-        if (myPiece[i][j]->tryToMove()) {
+        if (myPiece[i][j]->tryNextMove()) {
           return false;
         }
       }
