@@ -138,7 +138,7 @@ void Bishop::check(Player* opp) {
   }
 }
 
-void Bishop::ununcheck(Player* opp, int row, int col) {
+void Bishop::uncheck(Player* opp, int row, int col) {
 // up right
   for (int i = 1; i < GRID_SIZE - 1; i++) {
     // check out of bounds
