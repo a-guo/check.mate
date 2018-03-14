@@ -4,7 +4,7 @@
 #include "piece.h"
 
 class Rook : public Piece {
-  bool moved;
+  //bool moved;
  public:
    Rook(char type, int row, int col, Player* p, Board* theBoard);
    bool validMove(int row, int col);
