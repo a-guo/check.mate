@@ -12,9 +12,9 @@ Level1::Level1(Board* theBoard, int numOpp, int bottomLine, int playerNum)
 
 bool Level1::move() {
   // randomly select a Piece
-  bool done = false;
+  // bool done = false;
   int i = rand() % numPiece;
-  while (!pList[i]->tryToMove()) {
+  while (!pList[i]->tryNextMove()) {
     i = (i + 1) % numPiece;
   }
   int iRow = pList[i]->getRow();
