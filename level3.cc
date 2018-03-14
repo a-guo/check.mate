@@ -35,7 +35,7 @@ bool Level3::move() {
         }
         // if no attack, then random
         for (int fRow = 0; fRow < GRID_SIZE; fRow++) {
-          for (int fCOl = 0; fCol < GRID_SIZE; fCol++) {
+          for (int fCol = 0; fCol < GRID_SIZE; fCol++) {
             // there could be an error here
             if (myPiece[iRow][fCol]->move(fRow, fCol)) {
               myPiece[fRow][fCol] = myPiece[iRow][iCol];
@@ -73,10 +73,10 @@ bool Level3::move() {
   }
   // if cannot attack, random move
   int i = rand() % numPiece;
-  while (!pList[i]->tryToMove()) {
+  while (!pList[i]->tryNextMove()) {
     i = ( i + 1) % numPiece;
   }
-  int iRow = pList[i]->getRow():
+  int iRow = pList[i]->getRow();
   int iCol = pList[i]->getCol();
 
   for (int fRow = 0; fRow < GRID_SIZE; fRow++) {
