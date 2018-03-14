@@ -2,9 +2,11 @@
 
 using namespace std;
 
+/*
 char** theDisplay;
 const int boardSize;
 Xwindow *w;
+*/
 
 TextDisplay::TextDisplay(int n): boardSize(n + 2) {
   // boardSize leaves 2 X 2 margin for numbers and letters
@@ -89,7 +91,7 @@ void TextDisplay::notify(int iRow, int iCol, int fRow, int fCol, char type) {
   }
 }
 
-ostream &TextDisplay::operator<<(ostream &out, const TextDisplay &td) {
+ostream& operator<<(ostream &out, const TextDisplay &td) {
   for(int i = 0; i < td.boardSize; i++) {
     for (int j = 0; j < td.boardSize; j++) {
       out << td.theDisplay[i][j];
