@@ -73,7 +73,6 @@ bool Player::getChecked() {
   if (Checked[theKing->getRow()][theKing->getCol()] == 0 || theKing->tryNextMove()) {
     return false;
   }
-
   // serach for myPiece and try to move it
   for(int i = 0; i < GRID_SIZE; i++) {
     for(int j = 0; j < GRID_SIZE; j++) {
