@@ -10,7 +10,20 @@ bool Knight::validMove(int row, int col) {
   if ((this->col == col && this->row == row) || (col > GRID_SIZE) || col < 0) return false;
   if ((this->col == col && this->row == row) || (row > GRID_SIZE) || row < 0) return false;
 
-  
+  //rules of knight movement
+  if (! // -x
+        // --
+        // k-
+        ((this->row + 2 == row && this->col + 1 == col) ||
+          (this->row - 2 == row && this->col + 1 == col) ||
+          (this->row + 2 == row && this->col - 1 == col) ||
+          (this->row - 2 == row && this->col - 1 == col) ||
+          (this->row + 1 == row && this->col + 2 == col) ||
+          (this->row - 1 == row && this->col + 2 == col) ||
+          (this->row + 1 == row && this->col - 2 == col) ||
+          (this->row - 1 == row && this->col - 2 == col)))
+    return false;
+  return true;
 }
 
 bool Knight::tryNextMove() {
