@@ -7,6 +7,9 @@ Knight::Knight(char type, int row, int col, Player* p, Board* theBoard) :
               Piece(type, row, col, p, theBoard) {}
 
 bool Knight::validMove(int row, int col) {
+  if ((this->col == col && this->row == row) || (col > GRID_SIZE) || col < 0) return false;
+  if ((this->col == col && this->row == row) || (row > GRID_SIZE) || row < 0) return false;
+
   
 }
 
