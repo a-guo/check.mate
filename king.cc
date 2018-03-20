@@ -20,7 +20,7 @@ bool King::validMove(int row, int col) {
 
   // moving according to chess rules
   if (!(abs(this->row - row) == 1 && abs(this->col - col) == 1) ||
-        abs(this->row - row) == 1 && (this->col == col) ||
+        (abs(this->row - row) == 1 && (this->col == col)) ||
             (this->row == row && abs(this->col - col) == 1))
             return false;
   if (thePlayer->isPlaced(row, col)) return false;
