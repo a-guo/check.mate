@@ -6,7 +6,9 @@ using namespace std;
 Knight::Knight(char type, int row, int col, Player* p, Board* theBoard) :
               Piece(type, row, col, p, theBoard) {}
 
-bool Knight::validMove(int row, int col) {}
+bool Knight::validMove(int row, int col) {
+  
+}
 
 bool Knight::tryNextMove() {
   return (validMove(row + 2, col + 1) ||
