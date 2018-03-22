@@ -11,7 +11,6 @@ class Piece;
 class Player;
 
 class Board {
-    //int maxPlayer;
     int numPlayer;
     int currentPlayer;
     int* scores;
