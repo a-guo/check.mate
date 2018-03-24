@@ -1,7 +1,6 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-
 #include <iostream>
 #include "trashbin.h"
 #include "textdisplay.h"
